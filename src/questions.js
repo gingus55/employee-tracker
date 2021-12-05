@@ -21,16 +21,16 @@ const initialQuestion = [
         value: "addDept",
       },
       {
-        name: "Add a department",
-        value: "addDept",
+        name: "Add a role",
+        value: "addRole",
       },
       {
-        name: "Add a department",
-        value: "addDept",
+        name: "Add an employee",
+        value: "addEmp",
       },
       {
-        name: "Add a department",
-        value: "addDept",
+        name: "Update employee role",
+        value: "updateEmp",
       },
     ],
   },

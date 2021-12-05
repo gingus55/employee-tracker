@@ -22,7 +22,7 @@ const viewRoles = () => {
   console.log("roles");
 };
 
-const viewEmployess = () => {
+const viewEmployees = () => {
   console.log("employees");
 };
 
@@ -66,4 +66,14 @@ const deleteEmployee = () => {
 
 const viewBudget = () => {
   console.log("viewing the budget");
+};
+
+module.exports = {
+  viewDepartments,
+  viewEmployees,
+  viewRoles,
+  addEmployee,
+  addDepartment,
+  addRole,
+  updateEmployee,
 };
