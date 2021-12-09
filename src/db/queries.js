@@ -1,21 +1,22 @@
-// USE company_db;
+const mysql = require("mysql2");
 
-// -- view all departments
-// SELECT * FROM department;
+const dbOptions = {
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "password123",
+  database: process.env.DB_NAME || "tracker_db",
+};
 
-// -- view all roles
-// SELECT role.id, role.title, role.salary, department.name FROM role JOIN department ON role.departmentId = department.id ORDER BY department.name;
+const connection = mysql.createConnection(dbOptions);
 
-// -- view all employees
-// SELECT employee_role.firstName, employee_role.lastName, title, salary, name
-// FROM employee employee_role
-// LEFT JOIN role
-// ON employee_role.roleId=role.id
-// LEFT JOIN department
-// ON role.departmentId=department.id;
+const db = (req, res, next) => {
+  req.db = connection;
+  next();
+};
 
-const viewDepartments = () => {
-  console.log("departments");
+const viewDepartments = async () => {
+  const departments = await db.query("SELECT * FROM tracker_db.department");
+  console.log(departments);
 };
 
 const viewRoles = () => {

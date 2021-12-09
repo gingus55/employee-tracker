@@ -9,6 +9,7 @@ const {
   updateEmployee,
 } = require("./db/queries");
 const { initialQuestion } = require("./questions");
+const Db = require("./middleware/db");
 
 const title = `
                                                                     
@@ -26,8 +27,18 @@ const title = `
               ▀        █      █ ▀███▀    █   ▀███▀     █            
                       ▀      █          ▀             ▀        `;
 
+const db = new Db({
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "password123",
+  database: process.env.DB_NAME || "tracker_db",
+});
+
 const start = async () => {
+  await db.start();
+
   console.log(title);
+
   let inProgress = true;
   let answers = await inquirer.prompt(initialQuestion);
 
