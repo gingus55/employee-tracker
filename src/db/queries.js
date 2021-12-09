@@ -18,7 +18,7 @@
 
 const viewDepartments = async (db) => {
   const departments = await db.query("SELECT * FROM tracker_db.department");
-  console.log(departments);
+  console.table(departments);
 };
 
 const viewRoles = () => {

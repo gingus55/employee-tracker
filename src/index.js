@@ -38,7 +38,6 @@ const start = async () => {
   await db.start();
 
   console.log(title);
-  await viewDepartments(db);
 
   let inProgress = true;
 
