@@ -38,15 +38,16 @@ const start = async () => {
   await db.start();
 
   console.log(title);
+  await viewDepartments(db);
 
   let inProgress = true;
-  let answers = await inquirer.prompt(initialQuestion);
-
-  console.log(answers);
 
   while (inProgress) {
+    let answers = await inquirer.prompt(initialQuestion);
+
+    console.log(answers);
     if (answers.initial === "depts") {
-      viewDepartments();
+      await viewDepartments(db);
     }
     if (answers.initial === "roles") {
       viewRoles();
