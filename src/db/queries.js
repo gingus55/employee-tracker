@@ -69,8 +69,10 @@ const deleteEmployee = async (db, answer) => {
   console.log("employee deleted");
 };
 
-const viewBudget = () => {
-  console.log("viewing the budget");
+const viewBudget = async (db, answer) => {
+  const query = `SELECT SUM(salary) FROM tracker_db.role WHERE department_id =${answer.dept}`;
+  const budget = await db.query(query);
+  console.log(budget);
 };
 
 module.exports = {
@@ -84,4 +86,5 @@ module.exports = {
   deleteRole,
   deleteDepartment,
   deleteEmployee,
+  viewBudget,
 };

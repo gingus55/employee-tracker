@@ -45,6 +45,10 @@ const initialQuestion = [
         value: "delEmp",
       },
       {
+        name: "View Budget",
+        value: "budget",
+      },
+      {
         name: "Finished",
         value: "end",
       },

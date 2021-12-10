@@ -10,6 +10,7 @@ const {
   deleteRole,
   deleteDepartment,
   deleteEmployee,
+  viewBudget,
 } = require("./db/queries");
 const { initialQuestion, deptQuestion, roleQuestions } = require("./questions");
 const Db = require("./middleware/db");
@@ -173,6 +174,20 @@ const start = async () => {
       const answer = await inquirer.prompt(delDeptQuestions);
 
       await deleteDepartment(db, answer);
+    }
+    if (answers.initial === "budget") {
+      const budgetQuestions = [
+        {
+          type: "list",
+          message: "Which department would you like the budget for?",
+          name: "dept",
+          choices: generateDepartmentChoices(departments),
+        },
+      ];
+
+      const answer = await inquirer.prompt(budgetQuestions);
+
+      await viewBudget(db, answer);
     }
     if (answers.initial === "delEmp") {
       const delEmpQuestions = [
