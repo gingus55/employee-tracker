@@ -17,7 +17,9 @@ const viewEmployees = async (db) => {
   console.table(employees);
 };
 
-const addRole = () => {
+const addRole = async (db, answer) => {
+  const query = `INSERT INTO role (title, salary, department_Id) VALUES ('${answer.name}', ${answer.sal}, ${answer.dept})`;
+  await db.query(query);
   console.log("role added");
 };
 

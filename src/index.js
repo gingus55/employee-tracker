@@ -83,7 +83,7 @@ const start = async () => {
 
       const answer = await inquirer.prompt(roleQuestions);
       console.log(answer);
-      addRole();
+      await addRole(db, answer);
     }
     if (answers.initial === "addEmp") {
       addEmployee();
