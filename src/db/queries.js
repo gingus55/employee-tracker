@@ -21,8 +21,11 @@ const viewDepartments = async (db) => {
   console.table(departments);
 };
 
-const viewRoles = () => {
-  console.log("roles");
+const viewRoles = async (db) => {
+  const roles = await db.query(
+    "SELECT role.id, role.title, role.salary, dept_name FROM role JOIN department ON role.department_Id = department.id ORDER BY dept_name"
+  );
+  console.table(roles);
 };
 
 const viewEmployees = () => {

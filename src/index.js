@@ -48,7 +48,7 @@ const start = async () => {
       await viewDepartments(db);
     }
     if (answers.initial === "roles") {
-      viewRoles();
+      await viewRoles(db);
     }
     if (answers.initial === "emps") {
       viewEmployees();
