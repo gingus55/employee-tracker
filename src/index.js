@@ -7,6 +7,9 @@ const {
   addRole,
   addEmployee,
   updateEmployee,
+  deleteRole,
+  deleteDepartment,
+  deleteEmployee,
 } = require("./db/queries");
 const { initialQuestion, deptQuestion, roleQuestions } = require("./questions");
 const Db = require("./middleware/db");
@@ -142,6 +145,48 @@ const start = async () => {
       const answer = await inquirer.prompt(updateQuestions);
 
       await updateEmployee(db, answer);
+    }
+    if (answers.initial === "delRole") {
+      const delRoleQuestions = [
+        {
+          type: "list",
+          message: "Which role would you like to delete?",
+          name: "role",
+          choices: generateRoleChoices(roles),
+        },
+      ];
+
+      const answer = await inquirer.prompt(delRoleQuestions);
+
+      await deleteRole(db, answer);
+    }
+    if (answers.initial === "delDept") {
+      const delDeptQuestions = [
+        {
+          type: "list",
+          message: "Which department would you like to delete?",
+          name: "dept",
+          choices: generateDepartmentChoices(departments),
+        },
+      ];
+
+      const answer = await inquirer.prompt(delDeptQuestions);
+
+      await deleteDepartment(db, answer);
+    }
+    if (answers.initial === "delEmp") {
+      const delEmpQuestions = [
+        {
+          type: "list",
+          message: "Which employee would you like to delete?",
+          name: "emp",
+          choices: generateEmployeeChoices(employees),
+        },
+      ];
+
+      const answer = await inquirer.prompt(delEmpQuestions);
+
+      await deleteEmployee(db, answer);
     }
     if (answers.initial === "end") {
       inProgress = false;

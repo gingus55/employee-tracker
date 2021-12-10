@@ -33,6 +33,18 @@ const initialQuestion = [
         value: "updateEmp",
       },
       {
+        name: "Delete a role",
+        value: "delRole",
+      },
+      {
+        name: "Delete department",
+        value: "delDept",
+      },
+      {
+        name: "Delete an employee",
+        value: "delEmp",
+      },
+      {
         name: "Finished",
         value: "end",
       },

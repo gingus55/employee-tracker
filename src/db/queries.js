@@ -51,15 +51,21 @@ const viewByDepartment = () => {
   console.log("viewing by department");
 };
 
-const deleteDepartment = () => {
+const deleteDepartment = async (db, answer) => {
+  const query = `DELETE FROM tracker_db.department WHERE id=${answer.dept}`;
+  await db.query(query);
   console.log("department deleted");
 };
 
-const deleteRole = () => {
+const deleteRole = async (db, answer) => {
+  const query = `DELETE FROM tracker_db.role WHERE id=${answer.role}`;
+  await db.query(query);
   console.log("role deleted");
 };
 
-const deleteEmployee = () => {
+const deleteEmployee = async (db, answer) => {
+  const query = `DELETE FROM tracker_db.employee WHERE id=${answer.emp}`;
+  await db.query(query);
   console.log("employee deleted");
 };
 
@@ -75,4 +81,7 @@ module.exports = {
   addDepartment,
   addRole,
   updateEmployee,
+  deleteRole,
+  deleteDepartment,
+  deleteEmployee,
 };
