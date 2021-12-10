@@ -32,6 +32,10 @@ const initialQuestion = [
         name: "Update employee role",
         value: "updateEmp",
       },
+      {
+        name: "Finished",
+        value: "end",
+      },
     ],
   },
 ];

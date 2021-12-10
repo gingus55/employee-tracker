@@ -35,16 +35,15 @@ const db = new Db({
 });
 
 const start = async () => {
-  await db.start();
-
   console.log(title);
+
+  await db.start();
 
   let inProgress = true;
 
   while (inProgress) {
     let answers = await inquirer.prompt(initialQuestion);
 
-    console.log(answers);
     if (answers.initial === "depts") {
       await viewDepartments(db);
     }
@@ -65,6 +64,10 @@ const start = async () => {
     }
     if (answers.initial === "updateEmp") {
       updateEmployee();
+    }
+    if (answers.initial === "end") {
+      inProgress = false;
+      await db.stop();
     }
   }
 };
