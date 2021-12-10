@@ -29,7 +29,9 @@ const addDepartment = async (db, value) => {
   console.log("department added");
 };
 
-const addEmployee = () => {
+const addEmployee = async (db, answer) => {
+  const query = `INSERT INTO employee (first_name, last_name, role_Id, manager_Id) VALUES ('${answer.first}', '${answer.second}', ${answer.role}, ${answer.manager})`;
+  await db.query(query);
   console.log("employee added");
 };
 

@@ -48,40 +48,7 @@ const deptQuestion = [
   },
 ];
 
-const managerQuestions = [
-  {
-    type: "input",
-    name: "name",
-    message: "Enter your managers name:",
-  },
-  {
-    type: "input",
-    name: "id",
-    message: "Enter your managers ID:",
-  },
-  {
-    type: "input",
-    name: "email",
-    message: "Enter your managers email address:",
-  },
-  {
-    type: "input",
-    name: "officeNumber",
-    message: "Enter your managers office number:",
-  },
-];
-
-const teamNameQuestion = [
-  {
-    type: "input",
-    name: "teamName",
-    message: "Enter your team name:",
-  },
-];
-
 module.exports = {
   initialQuestion,
   deptQuestion,
-  managerQuestions,
-  teamNameQuestion,
 };

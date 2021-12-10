@@ -10,7 +10,11 @@ const {
 } = require("./db/queries");
 const { initialQuestion, deptQuestion, roleQuestions } = require("./questions");
 const Db = require("./middleware/db");
-const { generateDepartmentChoices } = require("./utils");
+const {
+  generateDepartmentChoices,
+  generateRoleChoices,
+  generateManagerChoices,
+} = require("./utils");
 
 const title = `
                                                                     
@@ -43,6 +47,12 @@ const start = async () => {
   let inProgress = true;
 
   while (inProgress) {
+    const departments = await db.query("SELECT * FROM tracker_db.department");
+    const roles = await db.query("SELECT * FROM tracker_db.role");
+    const managers = await db.query(
+      "SELECT DISTINCT A.id, A.first_name, A.last_name FROM tracker_db.employee A, tracker_db.employee B WHERE A.id = B.manager_id"
+    );
+
     let answers = await inquirer.prompt(initialQuestion);
 
     if (answers.initial === "depts") {
@@ -60,8 +70,6 @@ const start = async () => {
       await addDepartment(db, value);
     }
     if (answers.initial === "addRole") {
-      const departments = await db.query("SELECT * FROM tracker_db.department");
-
       const roleQuestions = [
         {
           type: "input",
@@ -86,7 +94,33 @@ const start = async () => {
       await addRole(db, answer);
     }
     if (answers.initial === "addEmp") {
-      addEmployee();
+      const employeeQuestions = [
+        {
+          type: "input",
+          name: "first",
+          message: "Enter the employee's first name:",
+        },
+        {
+          type: "input",
+          name: "second",
+          message: "Enter the employee's surname:",
+        },
+        {
+          type: "list",
+          message: "Please select a role:",
+          name: "role",
+          choices: generateRoleChoices(roles),
+        },
+        {
+          type: "list",
+          message: "Please select a Manager:",
+          name: "manager",
+          choices: generateManagerChoices(managers),
+        },
+      ];
+      const answer = await inquirer.prompt(employeeQuestions);
+
+      await addEmployee(db, answer);
     }
     if (answers.initial === "updateEmp") {
       updateEmployee();
