@@ -51,7 +51,7 @@ const start = async () => {
       await viewRoles(db);
     }
     if (answers.initial === "emps") {
-      viewEmployees();
+      await viewEmployees(db);
     }
     if (answers.initial === "addDept") {
       addDepartment();

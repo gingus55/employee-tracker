@@ -28,8 +28,11 @@ const viewRoles = async (db) => {
   console.table(roles);
 };
 
-const viewEmployees = () => {
-  console.log("employees");
+const viewEmployees = async (db) => {
+  const employees = await db.query(
+    "SELECT employee_role.first_name, employee_role.last_name, title, salary FROM employee employee_role LEFT JOIN role ON employee_role.role_Id=role.id LEFT JOIN department ON role.department_Id=department.id"
+  );
+  console.table(employees);
 };
 
 const addRole = () => {
