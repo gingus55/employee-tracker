@@ -14,6 +14,7 @@ const {
   generateDepartmentChoices,
   generateRoleChoices,
   generateManagerChoices,
+  generateEmployeeChoices,
 } = require("./utils");
 
 const title = `
@@ -52,6 +53,7 @@ const start = async () => {
     const managers = await db.query(
       "SELECT DISTINCT A.id, A.first_name, A.last_name FROM tracker_db.employee A, tracker_db.employee B WHERE A.id = B.manager_id"
     );
+    const employees = await db.query("SELECT * FROM tracker_db.employee");
 
     let answers = await inquirer.prompt(initialQuestion);
 
@@ -123,7 +125,23 @@ const start = async () => {
       await addEmployee(db, answer);
     }
     if (answers.initial === "updateEmp") {
-      updateEmployee();
+      const updateQuestions = [
+        {
+          type: "list",
+          message: "Choose an employee to update:",
+          name: "emp",
+          choices: generateEmployeeChoices(employees),
+        },
+        {
+          type: "list",
+          message: "Please select a new role:",
+          name: "role",
+          choices: generateRoleChoices(roles),
+        },
+      ];
+      const answer = await inquirer.prompt(updateQuestions);
+
+      await updateEmployee(db, answer);
     }
     if (answers.initial === "end") {
       inProgress = false;

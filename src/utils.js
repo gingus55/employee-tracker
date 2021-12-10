@@ -25,8 +25,18 @@ const generateManagerChoices = (managersFromDB) => {
   });
 };
 
+const generateEmployeeChoices = (employeesFromDB) => {
+  return employeesFromDB.map((employee) => {
+    return {
+      name: employee.first_name + " " + employee.last_name,
+      value: employee.id,
+    };
+  });
+};
+
 module.exports = {
   generateDepartmentChoices,
   generateRoleChoices,
   generateManagerChoices,
+  generateEmployeeChoices,
 };

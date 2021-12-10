@@ -35,7 +35,9 @@ const addEmployee = async (db, answer) => {
   console.log("employee added");
 };
 
-const updateEmployee = () => {
+const updateEmployee = async (db, answer) => {
+  const query = `UPDATE tracker_db.employee SET role_id = ${answer.role} WHERE id = ${answer.emp}`;
+  await db.query(query);
   console.log("update employee");
 };
 
