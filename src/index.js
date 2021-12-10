@@ -8,7 +8,7 @@ const {
   addEmployee,
   updateEmployee,
 } = require("./db/queries");
-const { initialQuestion } = require("./questions");
+const { initialQuestion, deptQuestion } = require("./questions");
 const Db = require("./middleware/db");
 
 const title = `
@@ -54,7 +54,9 @@ const start = async () => {
       await viewEmployees(db);
     }
     if (answers.initial === "addDept") {
-      addDepartment();
+      const answer = await inquirer.prompt(deptQuestion);
+      const value = answer.name;
+      await addDepartment(db, value);
     }
     if (answers.initial === "addRole") {
       addRole();

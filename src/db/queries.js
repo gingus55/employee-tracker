@@ -39,7 +39,9 @@ const addRole = () => {
   console.log("role added");
 };
 
-const addDepartment = () => {
+const addDepartment = async (db, value) => {
+  const query = `INSERT INTO department (dept_name) VALUES ('${value}')`;
+  await db.query(query);
   console.log("department added");
 };
 

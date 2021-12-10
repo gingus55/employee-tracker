@@ -40,26 +40,11 @@ const initialQuestion = [
   },
 ];
 
-const internQuestions = [
+const deptQuestion = [
   {
     type: "input",
     name: "name",
-    message: "Enter your interns name:",
-  },
-  {
-    type: "input",
-    name: "id",
-    message: "Enter your interns ID:",
-  },
-  {
-    type: "input",
-    name: "email",
-    message: "Enter your interns email address:",
-  },
-  {
-    type: "input",
-    name: "school",
-    message: "Enter your interns school:",
+    message: "Enter your Department name:",
   },
 ];
 
@@ -119,7 +104,7 @@ const teamNameQuestion = [
 
 module.exports = {
   initialQuestion,
-  internQuestions,
+  deptQuestion,
   engineerQuestions,
   managerQuestions,
   teamNameQuestion,
