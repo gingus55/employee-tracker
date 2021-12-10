@@ -12,7 +12,7 @@ const viewRoles = async (db) => {
 
 const viewEmployees = async (db) => {
   const employees = await db.query(
-    "SELECT employee_role.first_name, employee_role.last_name, title, salary FROM employee employee_role LEFT JOIN role ON employee_role.role_Id=role.id LEFT JOIN department ON role.department_Id=department.id"
+    "SELECT employee_role.first_name, employee_role.last_name, title, salary, dept_name FROM employee employee_role LEFT JOIN role ON employee_role.role_id=role.id LEFT JOIN department ON role.department_id=department.id"
   );
   console.table(employees);
 };
