@@ -8,8 +8,9 @@ const {
   addEmployee,
   updateEmployee,
 } = require("./db/queries");
-const { initialQuestion, deptQuestion } = require("./questions");
+const { initialQuestion, deptQuestion, roleQuestions } = require("./questions");
 const Db = require("./middleware/db");
+const { generateDepartmentChoices } = require("./utils");
 
 const title = `
                                                                     
@@ -59,6 +60,29 @@ const start = async () => {
       await addDepartment(db, value);
     }
     if (answers.initial === "addRole") {
+      const departments = await db.query("SELECT * FROM tracker_db.department");
+
+      const roleQuestions = [
+        {
+          type: "input",
+          name: "name",
+          message: "Enter the name of the role:",
+        },
+        {
+          type: "input",
+          name: "sal",
+          message: "Enter the salary:",
+        },
+        {
+          type: "list",
+          message: "Please select a department:",
+          name: "dept",
+          choices: generateDepartmentChoices(departments),
+        },
+      ];
+
+      const answer = await inquirer.prompt(roleQuestions);
+      console.log(answer);
       addRole();
     }
     if (answers.initial === "addEmp") {

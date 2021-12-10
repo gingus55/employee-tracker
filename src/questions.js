@@ -48,29 +48,6 @@ const deptQuestion = [
   },
 ];
 
-const engineerQuestions = [
-  {
-    type: "input",
-    name: "name",
-    message: "Enter your engineers name:",
-  },
-  {
-    type: "input",
-    name: "id",
-    message: "Enter your engineers ID:",
-  },
-  {
-    type: "input",
-    name: "email",
-    message: "Enter your engineers email address:",
-  },
-  {
-    type: "input",
-    name: "github",
-    message: "Enter your engineers GitHub username:",
-  },
-];
-
 const managerQuestions = [
   {
     type: "input",
@@ -105,7 +82,6 @@ const teamNameQuestion = [
 module.exports = {
   initialQuestion,
   deptQuestion,
-  engineerQuestions,
   managerQuestions,
   teamNameQuestion,
 };

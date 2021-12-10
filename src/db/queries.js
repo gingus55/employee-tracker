@@ -1,21 +1,3 @@
-// const mysql = require("mysql2");
-
-// const { db } = require("..");
-
-// const dbOptions = {
-//   host: process.env.DB_HOST || "localhost",
-//   user: process.env.DB_USER || "root",
-//   password: process.env.DB_PASSWORD || "password123",
-//   database: process.env.DB_NAME || "tracker_db",
-// };
-
-// const connection = mysql.createConnection(dbOptions);
-
-// const db = (req, res, next) => {
-//   req.db = connection;
-//   next();
-// };
-
 const viewDepartments = async (db) => {
   const departments = await db.query("SELECT * FROM tracker_db.department");
   console.table(departments);
