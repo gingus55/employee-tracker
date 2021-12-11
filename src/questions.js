@@ -49,6 +49,10 @@ const initialQuestion = [
         value: "budget",
       },
       {
+        name: "View by Department",
+        value: "viewDept",
+      },
+      {
         name: "Finished",
         value: "end",
       },

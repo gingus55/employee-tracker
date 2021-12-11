@@ -11,6 +11,7 @@ const {
   deleteDepartment,
   deleteEmployee,
   viewBudget,
+  viewByDepartment,
 } = require("./db/queries");
 const { initialQuestion, deptQuestion, roleQuestions } = require("./questions");
 const Db = require("./middleware/db");
@@ -202,6 +203,20 @@ const start = async () => {
       const answer = await inquirer.prompt(delEmpQuestions);
 
       await deleteEmployee(db, answer);
+    }
+    if (answers.initial === "viewDept") {
+      const viewDeptQuestions = [
+        {
+          type: "list",
+          message: "Which department would you like to view?",
+          name: "dept",
+          choices: generateDepartmentChoices(departments),
+        },
+      ];
+
+      const answer = await inquirer.prompt(viewDeptQuestions);
+
+      await viewByDepartment(db, answer);
     }
     if (answers.initial === "end") {
       inProgress = false;

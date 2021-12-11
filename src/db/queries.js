@@ -47,7 +47,10 @@ const viewByManager = () => {
   console.log("viewing by manager");
 };
 
-const viewByDepartment = () => {
+const viewByDepartment = async (db, answer) => {
+  const query = `SELECT employee_role.first_name, employee_role.last_name, title, salary, dept_name FROM employee employee_role LEFT JOIN role ON employee_role.role_id=role.id LEFT JOIN department ON role.department_id=department.id WHERE department_id = ${answer.dept}`;
+  const employees = await db.query(query);
+  console.table(employees);
   console.log("viewing by department");
 };
 
@@ -87,4 +90,5 @@ module.exports = {
   deleteDepartment,
   deleteEmployee,
   viewBudget,
+  viewByDepartment,
 };
