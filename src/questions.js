@@ -53,6 +53,10 @@ const initialQuestion = [
         value: "viewDept",
       },
       {
+        name: "View by Manager",
+        value: "viewManager",
+      },
+      {
         name: "Finished",
         value: "end",
       },

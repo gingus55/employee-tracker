@@ -43,7 +43,10 @@ const updateEmployee = async (db, answer) => {
 
 // BONUS
 
-const viewByManager = () => {
+const viewByManager = async (db, answer) => {
+  const query = `SELECT B.id, B.first_name, B.last_name, CONCAT(A.first_name," ", A.last_name) AS Manager FROM tracker_db.employee A, tracker_db.employee B WHERE A.id = B.manager_id = ${answer.manager}`;
+  const employees = await db.query(query);
+  console.table(employees);
   console.log("viewing by manager");
 };
 
@@ -75,7 +78,7 @@ const deleteEmployee = async (db, answer) => {
 const viewBudget = async (db, answer) => {
   const query = `SELECT SUM(salary) FROM tracker_db.role WHERE department_id =${answer.dept}`;
   const budget = await db.query(query);
-  console.log(budget);
+  console.table(budget);
 };
 
 module.exports = {
@@ -91,4 +94,5 @@ module.exports = {
   deleteEmployee,
   viewBudget,
   viewByDepartment,
+  viewByManager,
 };
