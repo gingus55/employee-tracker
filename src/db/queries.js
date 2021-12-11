@@ -12,7 +12,7 @@ const viewRoles = async (db) => {
 
 const viewEmployees = async (db) => {
   const employees = await db.query(
-    "SELECT employee_role.first_name, employee_role.last_name, title, salary, dept_name FROM employee employee_role LEFT JOIN role ON employee_role.role_id=role.id LEFT JOIN department ON role.department_id=department.id"
+    "SELECT CONCAT(E.FIRST_NAME,' ',E.LAST_NAME) AS 'USER', R.SALARY, R.TITLE, D.DEPT_NAME, CONCAT( M.FIRST_NAME,' ', M.LAST_NAME) AS MANAGER FROM EMPLOYEE AS E JOIN EMPLOYEE AS M ON E.MANAGER_ID = M.ID INNER JOIN ROLE R ON E.ROLE_ID = R.ID LEFT JOIN DEPARTMENT D ON R.DEPARTMENT_ID = D.ID ;"
   );
   console.table(employees);
 };
@@ -44,7 +44,7 @@ const updateEmployee = async (db, answer) => {
 // BONUS
 
 const viewByManager = async (db, answer) => {
-  const query = `SELECT B.id, B.first_name, B.last_name, CONCAT(A.first_name," ", A.last_name) AS Manager FROM tracker_db.employee A, tracker_db.employee B WHERE A.id = B.manager_id = ${answer.manager}`;
+  const query = `SELECT CONCAT(E.FIRST_NAME,' ',E.LAST_NAME) AS 'USER', R.SALARY, R.TITLE, D.DEPT_NAME, CONCAT( M.FIRST_NAME,' ', M.LAST_NAME) AS MANAGER FROM EMPLOYEE AS E JOIN EMPLOYEE AS M ON E.MANAGER_ID = M.ID INNER JOIN ROLE R ON E.ROLE_ID = R.ID LEFT JOIN DEPARTMENT D ON R.DEPARTMENT_ID = D.ID WHERE e.manager_id = ${answer.manager}`;
   const employees = await db.query(query);
   console.table(employees);
   console.log("viewing by manager");
