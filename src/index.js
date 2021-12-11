@@ -14,7 +14,7 @@ const {
   viewByDepartment,
   viewByManager,
 } = require("./db/queries");
-const { initialQuestion, deptQuestion, roleQuestions } = require("./questions");
+const { initialQuestion, deptQuestion } = require("./questions");
 const Db = require("./middleware/db");
 const {
   generateDepartmentChoices,
