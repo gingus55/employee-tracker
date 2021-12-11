@@ -38,7 +38,6 @@ const addEmployee = async (db, answer) => {
 const updateEmployee = async (db, answer) => {
   const query = `UPDATE tracker_db.employee SET role_id = ${answer.role} WHERE id = ${answer.emp}`;
   await db.query(query);
-  console.log("update employee");
 };
 
 // BONUS
@@ -47,32 +46,30 @@ const viewByManager = async (db, answer) => {
   const query = `SELECT CONCAT(E.FIRST_NAME,' ',E.LAST_NAME) AS 'USER', R.SALARY, R.TITLE, D.DEPT_NAME, CONCAT( M.FIRST_NAME,' ', M.LAST_NAME) AS MANAGER FROM EMPLOYEE AS E JOIN EMPLOYEE AS M ON E.MANAGER_ID = M.ID INNER JOIN ROLE R ON E.ROLE_ID = R.ID LEFT JOIN DEPARTMENT D ON R.DEPARTMENT_ID = D.ID WHERE e.manager_id = ${answer.manager}`;
   const employees = await db.query(query);
   console.table(employees);
-  console.log("viewing by manager");
 };
 
 const viewByDepartment = async (db, answer) => {
   const query = `SELECT employee_role.first_name, employee_role.last_name, title, salary, dept_name FROM employee employee_role LEFT JOIN role ON employee_role.role_id=role.id LEFT JOIN department ON role.department_id=department.id WHERE department_id = ${answer.dept}`;
   const employees = await db.query(query);
   console.table(employees);
-  console.log("viewing by department");
 };
 
 const deleteDepartment = async (db, answer) => {
   const query = `DELETE FROM tracker_db.department WHERE id=${answer.dept}`;
   await db.query(query);
-  console.log("department deleted");
+  console.log("DEPARTMENT DELETED");
 };
 
 const deleteRole = async (db, answer) => {
   const query = `DELETE FROM tracker_db.role WHERE id=${answer.role}`;
   await db.query(query);
-  console.log("role deleted");
+  console.log("ROLE DELETED");
 };
 
 const deleteEmployee = async (db, answer) => {
   const query = `DELETE FROM tracker_db.employee WHERE id=${answer.emp}`;
   await db.query(query);
-  console.log("employee deleted");
+  console.log("EMPLOYEE REMOVED");
 };
 
 const viewBudget = async (db, answer) => {
