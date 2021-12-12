@@ -4,7 +4,7 @@ https://github.com/gingus55/employee-tracker
 
 # Link to video of application
 
-<a href="https://drive.google.com/file/d/1KGCgSbP_8tewVnQbtAlZN28CyZJfX5Lf/view?usp=sharing">Video of application</a>
+<a href="https://drive.google.com/file/d/1-LdN8oyDr9xwRH_qjPYpmIof56EcuLNu/view?usp=sharing">Video of application</a>
 
 # Employee Tracker
 
