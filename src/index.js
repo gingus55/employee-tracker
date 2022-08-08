@@ -30,7 +30,7 @@ const title = `
 const db = new Db({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "password123",
+  password: process.env.DB_PASSWORD || "svn%34VGssd",
   database: process.env.DB_NAME || "tracker_db",
 });
 
